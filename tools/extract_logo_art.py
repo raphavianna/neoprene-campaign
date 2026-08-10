@@ -190,3 +190,62 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ---------------------------------------------------------------------------
+# Etiqueta horizontal da coxa
+# ---------------------------------------------------------------------------
+
+LAB_W, LAB_H = 1200, 312          # canvas canonico da etiqueta
+
+# cantos do retangulo gravado interno da plaqueta, lidos em crop com grade.
+# A plaqueta nao separa do tecido por brilho — fundo e borracha tem
+# luminancia parecida — entao a geometria vem de leitura direta, nao de
+# limiar. O trapezio confere: lado direito ~7% mais alto que o esquerdo,
+# coerente com a perspectiva da foto.
+CANTOS_ETIQUETA = np.float32([[76, 289], [677, 351], [665, 514], [64, 441]])
+
+
+def extrai_etiqueta(path='assets/_raw/LOGOS-HORI.png', thr=150):
+    im = cv2.imread(path)
+    g = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+    arte = (g > thr).astype(np.uint8) * 255
+
+    dst = np.float32([[0, 0], [LAB_W, 0], [LAB_W, LAB_H], [0, LAB_H]])
+    H = cv2.getPerspectiveTransform(CANTOS_ETIQUETA, dst)
+    art_ret = cv2.warpPerspective(arte, H, (LAB_W, LAB_H), flags=cv2.INTER_LINEAR)
+    foto_ret = cv2.warpPerspective(im, H, (LAB_W, LAB_H), flags=cv2.INTER_CUBIC)
+
+    # descarta o que sobrou da moldura: so o miolo interessa
+    k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+    art_ret = cv2.morphologyEx(art_ret, cv2.MORPH_OPEN, k)
+    return art_ret, foto_ret, H
+
+
+def limpa_etiqueta(art, area_min=250, topo=0.14):
+    """Descarta o pontilhado da costura da moldura, que o limiar captura junto.
+
+    Sao componentes pequenos e alinhados na faixa superior; a arte util (OH,
+    barras, letras, ondas) tem area bem maior e vive na faixa central.
+    """
+    n, lab, st, cen = cv2.connectedComponentsWithStats((art > 128).astype(np.uint8), 8)
+    out = np.zeros_like(art)
+    mantidos = 0
+    for i in range(1, n):
+        if st[i, cv2.CC_STAT_AREA] < area_min:
+            continue
+        if cen[i][1] < topo * art.shape[0]:
+            continue
+        out[lab == i] = 255
+        mantidos += 1
+    return out, mantidos
+
+
+def main_etiqueta():
+    art, foto, H = extrai_etiqueta()
+    art, n = limpa_etiqueta(art)
+    art_s = cv2.GaussianBlur(art, (0, 0), 1.0)
+    rgba = np.dstack([np.full_like(art_s, 255)] * 3 + [art_s])
+    cv2.imwrite('assets/wardrobe/label_thigh_art.png', rgba)
+    return dict(componentes=n, px_arte=int((art > 128).sum()),
+                canvas=[LAB_W, LAB_H])

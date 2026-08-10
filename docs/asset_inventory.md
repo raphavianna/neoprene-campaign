@@ -83,7 +83,25 @@ Vazia. Nenhum plate de locação sem personagem enviado.
 
 # Achados críticos do primeiro lote
 
-## 1. Tipografia do patch adulterada nos dois frames gerados — CRÍTICO
+## 1. Tipografia do patch — CORRIGIDA por compositing determinístico
+
+O `achado_critico_logo` se materializou nos dois frames: o arco do peito saía como ruído (`9GEEN RACCB`), a etiqueta da coxa idem, e — achado que só apareceu com as macros em mãos — **o próprio `OH` do frame não era o monograma da marca**, eram duas letras soltas de uma sans qualquer. Não havia nada de aproveitável na marcação.
+
+**Corrigido.** `tools/composite_logo.py`, zero crédito. Medições em `sf_002`, peito:
+
+| | Original | Composto |
+|---|---|---|
+| Tinta, pico (p95) | 221,1 | 221,0 |
+| Tinta, média | 148,4 | 163,6 |
+| Fundo do disco | 54,5 | 61,3 |
+
+Pixels alterados na imagem inteira: **0,26%** em `sf_002`, **0,21%** em `sf_001`.
+
+**Como:** supressão da tinta velha por abertura morfológica (inpaint deixa borrão), reposição de textura com corte de outliers (sem o corte, gotas d'água do trecho de origem são carimbadas dentro do patch), e arte canônica entrando só como máscara de relevo — o brilho não é arbitrado, é medido no próprio frame pelo percentil 90 do excesso da tinta original, **por canal**, porque a tinta da peça é creme quente e ganho neutro devolve cinza.
+
+**Defeito residual:** o fundo do disco fica ~7 níveis mais claro que o tecido vizinho, resquício da supressão. Tentativa de corrigir por viés medido foi reprovada — o anel de tecido limpo disponível dentro do disco cai no lado escuro do gradiente e a correção inverte de sinal, clareando em vez de escurecer.
+
+## 1b. Registro do estado anterior
 
 É o `achado_critico_logo` se materializando. Nos dois frames:
 
