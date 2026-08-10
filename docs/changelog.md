@@ -1,5 +1,14 @@
 # Changelog — neoprene-campaign
 
+## [Fase 0] Frame de partida e guia de upload
+
+- `docs/como_subir_assets.md` criado: passo a passo de upload, limites do navegador, destino por tipo de arquivo e a distinção entre frame de partida e imagem de referência.
+- **`assets/start_frames/` criada** — categoria não prevista no master prompt v2.0.
+
+**Decisão pendente de aprovação:** o master prompt v2.0 trata toda imagem enviada ao Seedance como "referência", sem separar o caso do **frame de partida** — a imagem que é o primeiro frame literal do vídeo e trava composição, luz e estado físico do segundo 0. São papéis com consequências diferentes, e a diferença é material no risco de logo: frame de partida em plano médio ou mais próximo carrega o patch para dentro do frame 0, e se for uma das três fotos do ensaio com o texto adulterado, o erro se propaga por todos os frames do take.
+
+A pasta e a documentação já existem para destravar o upload. **Promover isso para dentro do `CLAUDE.md` (árvore de pastas + papel declarado por take na Fase 2/3) depende de aprovação** — o master prompt é a fonte de verdade e não foi editado por conta própria.
+
 ## [Fase 0] Bootstrap da estrutura — v2
 
 - Master prompt renomeado de `claude.md` para `CLAUDE.md` na raiz, ativando-o como instrução persistente do repositório (item 2 da árvore de pastas da Fase 0).

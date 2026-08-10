@@ -6,6 +6,8 @@
 
 **Regra de importação (Fase 0, item 3):** todo arquivo entra primeiro em `assets/_raw/` com o nome original preservado, e só então é copiado/renomeado para o destino de tier. Renomear sobre o original é proibido.
 
+**Como subir:** ver `docs/como_subir_assets.md` para o passo a passo.
+
 ---
 
 ## TIER 1 — Ancoragem de identidade
@@ -35,6 +37,26 @@ Usável como referência de identidade em chamadas Seedance.
 | `material_open_cell_hem` | `assets/wardrobe/` | Textura da barra, open cell/nylon 1,5mm | Espessura e costura flat-lock | Baixo | pendente de upload |
 
 **Inventário pendente:** o master prompt registra "demais arquivos de detalhe de produto recebidos, catalogar na Fase 0 sem descartar nenhum". Esses arquivos não chegaram ao repositório. Catalogar individualmente assim que forem enviados — a lista acima é o mínimo declarado, não o total.
+
+## FRAME DE PARTIDA — papel de produção, não tier
+
+`assets/start_frames/`
+
+Categoria **adicionada na Fase 0**, não prevista no master prompt v2.0. Pendente de promoção para o `CLAUDE.md` (ver `docs/changelog.md`).
+
+Frame de partida é o **primeiro frame literal do vídeo** — o take nasce dele e se move a partir dali. Diferente de uma referência de identidade, que ancora quem é a pessoa mas deixa o enquadramento por conta do prompt, o frame de partida trava composição, luz e estado físico do segundo 0.
+
+Por que fica em pasta própria e não dentro de `identity/`:
+
+- O papel é outro. A mesma imagem pode ser boa âncora de identidade e péssimo frame de partida (ou o contrário).
+- A decisão "este take usa frame de partida" é por take e precisa ficar registrada — vai no `job_metadata.json` do take e no `docs/shot_list.md`.
+- **Interação com o risco de logo:** um frame de partida em plano médio ou mais próximo carrega o patch para dentro do frame 0. Se for uma das três fotos do ensaio com o texto adulterado, o erro de tipografia se propaga por todos os frames do take. Frame de partida com patch em distância de leitura exige verificação do patch **antes** de aprovar o take.
+
+| Slug de destino | Take | Origem | Risco de logo | Status |
+|---|---|---|---|---|
+| `sf_001_<descricao>` | a atribuir | a declarar no upload | a verificar | pendente de upload |
+
+Se o frame de partida vier de um still já aprovado, uma cópia fica aqui mesmo assim: `jobs/stills/` é histórico de produção, `assets/start_frames/` é papel ativo.
 
 ## TIER 3 — Suporte de prompt apenas
 

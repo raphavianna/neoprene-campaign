@@ -19,7 +19,7 @@ Zero créditos consumidos. Nenhuma chamada ao Higgsfield feita até aqui.
 
 ### Bloqueadores conhecidos
 
-1. **Nenhum asset no repositório.** As pastas de `assets/` estão criadas e vazias. A identidade do personagem é ancorada por referência de imagem direta em cada chamada (não há Soul Character treinado) — sem os arquivos Tier 1, nenhum take pode ser gerado. Ver `docs/asset_inventory.md` para a lista do que é esperado e onde cada arquivo vai.
+1. **Nenhum asset no repositório.** As pastas de `assets/` estão criadas e vazias. A identidade do personagem é ancorada por referência de imagem direta em cada chamada (não há Soul Character treinado) — sem os arquivos Tier 1, nenhum take pode ser gerado. **Para subir: `docs/como_subir_assets.md`.** Para o destino de cada arquivo: `docs/asset_inventory.md`.
 2. **Decisões de risco de logo em aberto** para T1, T3 e T4 — precisam ser tomadas take a take antes da execução.
 3. **Onda 2 sem decisão formal** — seguir sem referência, aguardar material, ou cortar do escopo.
 
@@ -33,12 +33,14 @@ neoprene-campaign/
 │   ├── _raw/               ← originais preservados antes de renomear
 │   ├── identity/{face,body}/   ← Tier 1, ancoragem de identidade
 │   ├── wardrobe/           ← Tier 2, ancoragem de peça
-│   ├── scenario/
+│   ├── scenario/           ← plates de locação, praia sem personagem
+│   ├── start_frames/       ← primeiro frame literal de um take
 │   └── support_marketing/  ← Tier 3, suporte de prompt apenas
 ├── jobs/
 │   ├── stills/
 │   └── video/take_<NN>_<slug>/{prompt_en.md,job_metadata.json,output.mp4}
 └── docs/
+    ├── como_subir_assets.md  ← onde colocar cada imagem
     ├── shot_list.md
     ├── character_bible.md
     ├── cinematography_bible.md
