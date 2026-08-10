@@ -17,6 +17,9 @@ Sheen de água máximo próximo da arrebentação, secando visualmente de forma 
 **Pele**
 Gotas visíveis em braços e rosto próximo da água, reduzindo de forma consistente com o tecido.
 
+**Pés — descalço**
+Personagem **descalço em todos os takes**. A sapatilha de neoprene existe como produto e está catalogada em `assets/wardrobe/bootie_sole_product.webp`, mas por decisão do usuário entra **apenas como catálogo de produto** nesta fase e não como figurino. Calçar o personagem em qualquer take da Onda 1 é quebra de continuidade, não variação. A sapatilha também não entra como referência de imagem em chamada de vídeo.
+
 ## Estado por take
 
 Preencher na aprovação de cada take (Fase 4). Sem take produzido até aqui.

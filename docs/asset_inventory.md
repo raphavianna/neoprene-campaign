@@ -27,10 +27,10 @@
 
 | Slug | Caminho | Origem | Formato | Setup / take | Status |
 |---|---|---|---|---|---|
-| `sf_001` | `assets/start_frames/sf_001_setup_a_encontro_camera_3x4.png` | `frame-start-01.png` | 1792×2390 — **3:4 retrato** | Setup A, corpo inteiro, caminhando de encontro à câmera, olhar direto → composição de **T3** | ⚠️ recebido, **não utilizável como está** |
-| `sf_002` | `assets/start_frames/sf_002_setup_a_plano_medio_16x9.png` | `nedium-frame.png` | 2752×1536 — **16:9 exato** | Setup A, plano médio, olhar direto, gota escorrendo da mão → composição de **T3** | ⚠️ recebido, **não utilizável como está** |
+| `sf_001` | `assets/start_frames/sf_001_setup_a_encontro_camera_3x4.png` | `frame-start-01.png` | 1792×2390 — **3:4 retrato** | Setup A, corpo inteiro, caminhando de encontro à câmera, olhar direto → composição de **T3** | ⚠️ marca d'água removida; **aspect e patch pendentes** |
+| `sf_002` | `assets/start_frames/sf_002_setup_a_plano_medio_16x9.png` | `nedium-frame.png` | 2752×1536 — **16:9 exato** | Setup A, plano médio, olhar direto, gota escorrendo da mão → composição de **T3** | ⚠️ marca d'água removida; **patch pendente** |
 
-Motivos do "não utilizável como está": marca d'água do gerador e tipografia do patch adulterada nos dois. Detalhe abaixo.
+Os arquivos em `assets/start_frames/` são as versões **com a marca d'água removida**. Os originais intactos seguem em `assets/_raw/`. O que ainda bloqueia os dois é a tipografia do patch; `sf_001` tem também o problema de aspect.
 
 ## TIER 2 — Ancoragem de peça
 
@@ -75,11 +75,17 @@ Se qualquer um desses frames virar frame de partida sem correção, o logo errad
 
 **Boa notícia:** o lote trouxe a fonte de verdade que faltava. `top_front_product.webp` e `patch_thigh_macro.webp` mostram as duas marcas com tipografia legível, e podem ser travadas como referência adicional ou usadas para recompor a área em pós.
 
-## 2. Marca d'água do gerador nos dois frames — CRÍTICO
+## 2. Marca d'água do gerador — RESOLVIDO
 
-Os dois PNGs trazem o ícone de brilho (sparkle) do gerador no canto inferior direito. Num frame de partida isso é pior que numa still: a marca entra no frame 0 e o modelo de vídeo tende a **preservá-la e às vezes animá-la** ao longo do take.
+Os PNGs traziam o ícone de brilho (sparkle) do gerador: **uma** marca em `sf_001`, **duas** em `sf_002` (a segunda passou despercebida na primeira leitura). Num frame de partida isso é pior que numa still — a marca entra no frame 0 e o modelo de vídeo tende a preservá-la e às vezes animá-la ao longo do take.
 
-Precisa ser removida antes de qualquer uso como frame de partida.
+**Removidas.** Script versionado em `tools/remove_generator_watermark.py`, com os parâmetros e o racional no cabeçalho.
+
+Método: a marca é uma sobreposição de branco com transparência constante, então é **invertível** — `bg = (obs − a·m·255)/(1 − a·m)`. Isso recupera a textura real do fundo em vez de inventar pixel. Os parâmetros foram medidos, não arbitrados: o expoente do astroide saiu 0,667 pela extensão diagonal, e o alpha 0,289 por dois estimadores independentes que concordaram (perfil por conchas de raio e degrau local cruzando a borda). Só a faixa de 3 px do contorno recebe inpaint, onde o antialias original não é reproduzível exatamente.
+
+Área alterada: 0,10% dos pixels em `sf_001`, 0,16% em `sf_002`. Verificado em 1:1 — sem traço em `sf_001`, contorno residual imperceptível em `sf_002`.
+
+Ressalva honesta: sobre a espuma clara de `sf_002` o estimador de alpha perde precisão, porque `255 − fundo` fica pequeno. O alpha das duas marcas dessa imagem foi fechado por inspeção visual em torno do valor medido em `sf_001` (0,30 e 0,28), não por medição direta.
 
 ## 3. Aspect ratio
 
@@ -115,8 +121,14 @@ Os dois frames gerados do personagem **não têm tatuagem nenhuma**.
 
 Leitura mais provável: a tatuagem foi observada no lado de produto do diptique e atribuída ao personagem por engano. Se confirmado, sai do dossiê como marca de continuidade — o que também torna irrelevante a decisão de não descrevê-la no prompt.
 
-## 8. Sapatilha de neoprene é produto novo, fora do escopo declarado
+## 8. Sapatilha de neoprene — DECIDIDO: catálogo de produto apenas
 
-O `<contexto_da_campanha>` define a peça como **conjunto de duas partes**: top + bermuda. A sapatilha não aparece em lugar nenhum do master prompt, nem no shot list, nem no tracker.
+O `<contexto_da_campanha>` define a peça como **conjunto de duas partes**: top + bermuda. A sapatilha não aparece no master prompt, nem no shot list, nem no tracker.
 
-Nos dois frames o personagem está **descalço**. Se a sapatilha entra na campanha, ela muda figurino, tracker de continuidade e provavelmente pede um insert próprio. Decisão de escopo, não de execução.
+**Decisão do usuário:** a sapatilha entra **apenas como catálogo de produto** neste momento. O personagem aparece **descalço em todos os takes**, como já está nos dois frames.
+
+Consequências aplicadas:
+
+- `bootie_sole_product.webp` permanece em `assets/wardrobe/` como Tier 2, para referência de produto e uso em material de catálogo.
+- **Nunca entra como referência de figurino** em chamada de vídeo da Onda 1.
+- "Pés descalços" vira item travado no `docs/continuity_tracker.md` — calçar o personagem em qualquer take passa a ser quebra de continuidade, não variação.

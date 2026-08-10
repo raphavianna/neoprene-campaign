@@ -1,5 +1,17 @@
 # Changelog — neoprene-campaign
 
+## [Fase 0] Marcas d'água removidas e escopo da sapatilha decidido
+
+**Marcas d'água do gerador removidas dos dois frames de partida.** Eram três no total, não duas: `sf_001` tinha uma, `sf_002` tinha **duas** — a segunda passou despercebida na primeira leitura e só apareceu na varredura.
+
+Método (script versionado em `tools/remove_generator_watermark.py`): a marca é sobreposição de branco com transparência constante, portanto invertível — `bg = (obs − a·m·255)/(1 − a·m)`. Recupera a textura real do fundo em vez de inventar pixel. Expoente do astroide medido em 0,667 pela extensão diagonal; alpha 0,289 por dois estimadores independentes que concordaram. Só a faixa de 3 px do contorno recebe inpaint. Área alterada: 0,10% e 0,16% dos pixels. Originais intactos em `assets/_raw/`.
+
+Ressalva: sobre a espuma clara de `sf_002` o estimador de alpha perde precisão; o alpha das duas marcas dessa imagem foi fechado por inspeção visual em torno do valor medido em `sf_001`.
+
+**Sapatilha de neoprene: catálogo de produto apenas.** Decisão do usuário. O personagem fica descalço em todos os takes — item agora travado no tracker de continuidade. A peça segue catalogada em `assets/wardrobe/` como Tier 2, mas não entra como figurino nem como referência de imagem na Onda 1.
+
+Bloqueio remanescente nos dois frames: tipografia do patch adulterada. Em `sf_001`, também o aspect 3:4 contra os 16:9 do shot list.
+
 ## [Fase 0] Primeiro lote de assets — 6 arquivos classificados
 
 Upload recebido em `assets/_raw/` e copiado para os tiers (originais preservados):
