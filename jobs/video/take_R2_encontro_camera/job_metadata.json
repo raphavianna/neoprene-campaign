@@ -1,0 +1,38 @@
+{
+  "take": "R2",
+  "slug": "encontro_camera",
+  "status": "aguardando_aprovacao",
+  "modelo": "seedance_2_5",
+  "parametros": {
+    "mode": "omni_reference",
+    "duration": 8,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": true
+  },
+  "medias": {
+    "start_image": {
+      "asset": "assets/start_frames/sf_002_setup_a_plano_medio_16x9.png",
+      "media_id": "af995694-0861-40c6-bac3-df81d079768d"
+    },
+    "image_references": [
+      {"asset": "assets/identity/face/face_001.png",
+       "media_id": "d1672a28-11d6-41e7-aacf-1b84f0030a93"},
+      {"asset": "assets/identity/body/body_002_setup_a_retrato.png",
+       "media_id": "d8d39bdf-0ebd-49bb-8cb7-c44bda0d473c"}
+    ]
+  },
+  "preflight": {
+    "custo_creditos": 52,
+    "saldo_no_preflight": 2975,
+    "plano": "ultra",
+    "preset_recomendado_declinado": "IN THE DARK (24bae836-2c4a-48e0-89b6-49fcc0b21612)"
+  },
+  "decisao_de_logo": "Resolvido no frame de partida por compositing deterministico. O badge do peito e a etiqueta da coxa entram no frame 0 com a arte canonica extraida das macros de produto. O prompt instrui a carregar essas marcas adiante sem redesenhar. Nao ha area neutralizada nem dependencia de composicao em pos.",
+  "continuidade": "Primeiro take produzido do projeto, sem take anterior para confrontar. Confere contra o tracker: descalco, prancha sob o braco direito, cabelo molhado com mechas agrupadas, sheen discreto coerente com Setup A (mais distante da agua que o Setup B do R1).",
+  "prompt_caracteres": 3447,
+  "creditos_consumidos_ate_aqui": 0,
+  "job_id": null,
+  "custo_real": null,
+  "quality_gate": null
+}
