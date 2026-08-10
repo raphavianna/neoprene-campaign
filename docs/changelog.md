@@ -1,5 +1,29 @@
 # Changelog — neoprene-campaign
 
+## [Fase 0] Primeiro lote de assets — 6 arquivos classificados
+
+Upload recebido em `assets/_raw/` e copiado para os tiers (originais preservados):
+
+- `rosto.png` → `assets/identity/face/face_001.png` (Tier 1, Setup B)
+- `frame-start-01.png` → `assets/start_frames/sf_001_setup_a_encontro_camera_3x4.png`
+- `nedium-frame.png` → `assets/start_frames/sf_002_setup_a_plano_medio_16x9.png`
+- `front.webp` → `assets/wardrobe/top_front_product.webp` (Tier 2)
+- `006ebe…webp` → `assets/wardrobe/patch_thigh_macro.webp` (Tier 2)
+- `64f99…webp` → `assets/wardrobe/bootie_sole_product.webp` (Tier 2, produto fora do escopo)
+
+**Oito achados críticos registrados em `docs/asset_inventory.md`.** Os que bloqueiam produção:
+
+1. Tipografia do patch adulterada nos dois frames gerados — o `achado_critico_logo` confirmado no material real.
+2. Marca d'água do gerador nos dois frames — inaceitável em frame de partida, tende a se propagar pelo take.
+3. `sf_001` é 3:4; o shot list exige 16:9. Só `sf_002` tem aspect correto.
+4. Os dois frames são Setup A (composição de T3) — T1 e T2 seguem sem frame de partida e sem âncora de corpo.
+5. Prancha dos frames (deck pad preto, leash na rabeta) contradiz o tracker (single-fin 9', leash no pulso).
+6. Barra da bermuda não lê como open cell nos frames.
+7. A tatuagem atribuída ao personagem provavelmente é do modelo de produto — revisão do dossiê pendente.
+8. Sapatilha de neoprene é produto novo, fora do conjunto de duas peças declarado.
+
+Nenhum `body_001`–`body_004` foi enviado, então a regra de identity lock não pode ser cumprida como escrita. Nenhum crédito consumido.
+
 ## [Fase 0] Frame de partida e guia de upload
 
 - `docs/como_subir_assets.md` criado: passo a passo de upload, limites do navegador, destino por tipo de arquivo e a distinção entre frame de partida e imagem de referência.

@@ -1,84 +1,122 @@
 # Inventário de assets — neoprene-campaign
 
 > Hierarquia de três camadas conforme `CLAUDE.md` → `<hierarquia_de_assets>`.
+> **Última atualização:** primeiro lote de upload (6 arquivos) recebido e classificado.
 
-**Estado na Fase 0:** o repositório foi clonado contendo **apenas o master prompt**. Nenhum arquivo binário de asset está versionado ainda. A estrutura de pastas está criada e vazia; este inventário registra o que o master prompt declara como esperado, com o slug de destino já reservado. Nada foi descartado — o que existe hoje é ausência de upload, não perda.
+**Regra de importação (Fase 0, item 3):** todo arquivo entra primeiro em `assets/_raw/` com o nome original preservado, e só então é **copiado** (não movido) para o destino de tier. Os originais em `_raw/` permanecem intactos.
 
-**Regra de importação (Fase 0, item 3):** todo arquivo entra primeiro em `assets/_raw/` com o nome original preservado, e só então é copiado/renomeado para o destino de tier. Renomear sobre o original é proibido.
-
-**Como subir:** ver `docs/como_subir_assets.md` para o passo a passo.
+**Como subir mais:** ver `docs/como_subir_assets.md`.
 
 ---
 
 ## TIER 1 — Ancoragem de identidade
 
-Usável como referência de identidade em chamadas Seedance.
-
-| Slug de destino | Caminho | Descrição | O que ancora | Risco de logo | Status |
+| Slug | Caminho | Origem | Descrição | Risco de logo | Status |
 |---|---|---|---|---|---|
-| `face_001` | `assets/identity/face/` | Retrato macro três-quartos, Setup B | Rosto, cabelo molhado, micro-expressão | Baixo (patch fora de quadro) | pendente de upload |
-| `body_001` | `assets/identity/body/` | Setup A, plano médio frontal, paisagem | Identidade + Setup A + olhar direto | **Alto** — patch em distância de leitura | pendente de upload |
-| `body_002` | `assets/identity/body/` | Setup A, plano médio frontal, retrato | Identidade + Setup A | **Alto** — patch em distância de leitura | pendente de upload |
-| `body_003` | `assets/identity/body/` | Setup B, plano aberto lateral, diptique com detalhe de patch/prancha | Setup B, caminhada, tatuagem da canela direita | Médio | pendente de upload |
-| `body_004` | `assets/identity/body/` | Setup B, transição na água rasa, luz de contorno forte, diptique com detalhe | Setup B, pico de molhado, backlight | Médio | pendente de upload |
+| `face_001` | `assets/identity/face/face_001.png` | `rosto.png` (1024×1024) | Retrato três-quartos, cabelo molhado com mechas definidas e gotas visíveis, boca levemente entreaberta, olhar fora de quadro. Fundo verde desfocado de mata + céu estourado = **Setup B**. Bate com o dossiê. | Baixo — patch fora de quadro | ✅ importado |
+| `body_001` | `assets/identity/body/` | — | Setup A, plano médio frontal, paisagem | Alto | ❌ **não enviado** |
+| `body_002` | `assets/identity/body/` | — | Setup A, plano médio frontal, retrato | Alto | ❌ **não enviado** |
+| `body_003` | `assets/identity/body/` | — | Setup B, plano aberto lateral, diptique com detalhe | Médio | ❌ **não enviado** |
+| `body_004` | `assets/identity/body/` | — | Setup B, transição na água rasa, backlight forte | Médio | ❌ **não enviado** |
+
+**Consequência operacional:** sem nenhum `body_*`, a regra de identity lock (`face_001` + um `body_*` em todo plano médio ou mais próximo) **não pode ser cumprida como escrita**. Os dois frames de partida abaixo podem cobrir o papel de âncora de corpo, mas são **saída gerada**, não foto de ensaio — usar um output como âncora propaga qualquer erro que ele já carregue. Ver os achados críticos no fim deste arquivo.
+
+## FRAME DE PARTIDA
+
+`assets/start_frames/` — primeiro frame literal de um take. Categoria adicionada na Fase 0, pendente de promoção ao `CLAUDE.md`.
+
+| Slug | Caminho | Origem | Formato | Setup / take | Status |
+|---|---|---|---|---|---|
+| `sf_001` | `assets/start_frames/sf_001_setup_a_encontro_camera_3x4.png` | `frame-start-01.png` | 1792×2390 — **3:4 retrato** | Setup A, corpo inteiro, caminhando de encontro à câmera, olhar direto → composição de **T3** | ⚠️ recebido, **não utilizável como está** |
+| `sf_002` | `assets/start_frames/sf_002_setup_a_plano_medio_16x9.png` | `nedium-frame.png` | 2752×1536 — **16:9 exato** | Setup A, plano médio, olhar direto, gota escorrendo da mão → composição de **T3** | ⚠️ recebido, **não utilizável como está** |
+
+Motivos do "não utilizável como está": marca d'água do gerador e tipografia do patch adulterada nos dois. Detalhe abaixo.
 
 ## TIER 2 — Ancoragem de peça
 
 **Nunca como referência de identidade** — o modelo das fotos de produto não é o talent.
 
-| Slug de destino | Caminho | Descrição | O que ancora | Risco de logo | Status |
-|---|---|---|---|---|---|
-| `patch_chest_macro` | `assets/wardrobe/` | Patch do peito, macro, canônico | Geometria e tipografia do patch | Fonte de verdade do logo | pendente de upload |
-| `patch_thigh_macro` | `assets/wardrobe/` | Patch/etiqueta da coxa, macro | Tipografia secundária | Alto | pendente de upload |
-| `waist_drawcord` | `assets/wardrobe/` | Cordão interno do cós | Construção do cós | Baixo | pendente de upload |
-| `top_back_construction` | `assets/wardrobe/` | Costas do top — corte raglan, gola | Costura e caimento | Baixo | pendente de upload |
-| `sleeve_side_panel` | `assets/wardrobe/` | Painel lateral da manga, recorte de poliamida | Recorte em malha nos flancos | Baixo | pendente de upload |
-| `material_neoprene_body` | `assets/wardrobe/` | Textura do corpo da bermuda, neoprene fechado 1,5mm | Brilho de borracha molhada | Baixo | pendente de upload |
-| `material_open_cell_hem` | `assets/wardrobe/` | Textura da barra, open cell/nylon 1,5mm | Espessura e costura flat-lock | Baixo | pendente de upload |
-
-**Inventário pendente:** o master prompt registra "demais arquivos de detalhe de produto recebidos, catalogar na Fase 0 sem descartar nenhum". Esses arquivos não chegaram ao repositório. Catalogar individualmente assim que forem enviados — a lista acima é o mínimo declarado, não o total.
-
-## FRAME DE PARTIDA — papel de produção, não tier
-
-`assets/start_frames/`
-
-Categoria **adicionada na Fase 0**, não prevista no master prompt v2.0. Pendente de promoção para o `CLAUDE.md` (ver `docs/changelog.md`).
-
-Frame de partida é o **primeiro frame literal do vídeo** — o take nasce dele e se move a partir dali. Diferente de uma referência de identidade, que ancora quem é a pessoa mas deixa o enquadramento por conta do prompt, o frame de partida trava composição, luz e estado físico do segundo 0.
-
-Por que fica em pasta própria e não dentro de `identity/`:
-
-- O papel é outro. A mesma imagem pode ser boa âncora de identidade e péssimo frame de partida (ou o contrário).
-- A decisão "este take usa frame de partida" é por take e precisa ficar registrada — vai no `job_metadata.json` do take e no `docs/shot_list.md`.
-- **Interação com o risco de logo:** um frame de partida em plano médio ou mais próximo carrega o patch para dentro do frame 0. Se for uma das três fotos do ensaio com o texto adulterado, o erro de tipografia se propaga por todos os frames do take. Frame de partida com patch em distância de leitura exige verificação do patch **antes** de aprovar o take.
-
-| Slug de destino | Take | Origem | Risco de logo | Status |
+| Slug | Caminho | Origem | Descrição | Status |
 |---|---|---|---|---|
-| `sf_001_<descricao>` | a atribuir | a declarar no upload | a verificar | pendente de upload |
-
-Se o frame de partida vier de um still já aprovado, uma cópia fica aqui mesmo assim: `jobs/stills/` é histórico de produção, `assets/start_frames/` é papel ativo.
+| `top_front_product` | `assets/wardrobe/top_front_product.webp` | `front.webp` (1024×1366) | Top manga longa, frente, em modelo de estúdio. Mostra corte raglan, gola, costura vertical central e o **patch do peito com tipografia legível**: `OH` sobre `USE ZERO HORA®` | ✅ importado |
+| `patch_thigh_macro` | `assets/wardrobe/patch_thigh_macro.webp` | `006ebe…webp` (1024×1280) | Bermuda de neoprene, três-quartos lateral. Mostra a **etiqueta da coxa legível** (`OH \| USE ZERO HORA \| ≋`), a costura da barra e o volume do neoprene | ✅ importado |
+| `bootie_sole_product` | `assets/wardrobe/bootie_sole_product.webp` | `64f99…webp` (1024×682) | **Sapatilha de neoprene**, vista da sola, solado texturizado, logo `OH` no cano | ⚠️ importado — **produto fora do escopo declarado**, ver achados |
+| `patch_chest_macro` | `assets/wardrobe/` | — | Patch do peito, macro isolado | ❌ não enviado (parcialmente coberto por `top_front_product`) |
+| `waist_drawcord` | `assets/wardrobe/` | — | Cordão interno do cós | ❌ não enviado |
+| `top_back_construction` | `assets/wardrobe/` | — | Costas do top, raglan e gola | ❌ não enviado |
+| `sleeve_side_panel` | `assets/wardrobe/` | — | Painel lateral da manga, recorte de poliamida | ❌ não enviado |
+| `material_neoprene_body` | `assets/wardrobe/` | — | Textura do corpo da bermuda | ❌ não enviado (parcialmente coberto por `patch_thigh_macro`) |
+| `material_open_cell_hem` | `assets/wardrobe/` | — | Textura da barra, open cell | ❌ não enviado (parcialmente coberto por `patch_thigh_macro`) |
 
 ## TIER 3 — Suporte de prompt apenas
 
-**Nunca como referência de imagem em geração.** Servem para leitura humana e redação de prompt.
+**Nunca como referência de imagem em geração.**
 
-| Slug de destino | Caminho | Descrição | Status |
-|---|---|---|---|
-| `infografico_etiqueta_emborrachada` | `assets/support_marketing/` | Infográfico de produto com texto/diagramação sobreposta. Fonte de verdade **geométrica e tipográfica** do patch — acima das fotos do ensaio | pendente de upload |
-| demais infográficos | `assets/support_marketing/` | Materiais de marketing com texto sobreposto | pendente de upload |
+| Slug | Descrição | Status |
+|---|---|---|
+| `infografico_etiqueta_emborrachada` | Fonte de verdade geométrica e tipográfica do patch declarada pelo master prompt | ❌ **não enviado** |
+
+## `assets/scenario/`
+
+Vazia. Nenhum plate de locação sem personagem enviado.
 
 ---
 
-## Herança de still
+# Achados críticos do primeiro lote
 
-- Job `07b4ffb6` (`nano_banana_pro`) — **aprovado**, sobrepõe `fea50396` (`seedream_v4_5`, descartado).
-- `v2_board.png` — prancha corrigida.
-- Correção de cabelo: **iniciada e não fechada**. Não usar como padrão de referência para o vídeo.
+## 1. Tipografia do patch adulterada nos dois frames gerados — CRÍTICO
 
-Arquivos de saída da campanha de still, quando importados, vão para `jobs/stills/`.
+É o `achado_critico_logo` se materializando. Nos dois frames:
 
-## Achado crítico de logo
+- **Patch do peito:** o `OH` sai legível, mas a linha de texto abaixo dele é ruído tipográfico, não `USE ZERO HORA®`.
+- **Etiqueta da coxa:** ruído em ambos (`TS&S ENCLOSESHTA` e `UZS ZOOASDXZ` são leituras aproximadas do que aparece).
 
-O patch circular do peito ("OH · USE ZERO HORA®", borracha emborrachada em alto-relevo) sai com texto correto em **apenas uma** das quatro fotos do ensaio; nas outras três o texto está adulterado — alucinação de tipografia clássica. Por isso a fonte de verdade do patch é o infográfico Tier 3, **não** as fotos do ensaio.
+Se qualquer um desses frames virar frame de partida sem correção, o logo errado entra no frame 0 e se propaga por **todos** os frames do take. Não é corrigível em pós sem repintar quadro a quadro.
 
-Regra por take: patch em distância de leitura (plano médio ou mais próximo) = risco de logo, decidir explicitamente entre travar o patch como referência de imagem adicional ou gerar a área em branco/neutro para composição posterior. Plano geral/distante = risco baixo. A decisão vai declarada no relatório de aprovação do take — nunca assumida em silêncio.
+**Boa notícia:** o lote trouxe a fonte de verdade que faltava. `top_front_product.webp` e `patch_thigh_macro.webp` mostram as duas marcas com tipografia legível, e podem ser travadas como referência adicional ou usadas para recompor a área em pós.
+
+## 2. Marca d'água do gerador nos dois frames — CRÍTICO
+
+Os dois PNGs trazem o ícone de brilho (sparkle) do gerador no canto inferior direito. Num frame de partida isso é pior que numa still: a marca entra no frame 0 e o modelo de vídeo tende a **preservá-la e às vezes animá-la** ao longo do take.
+
+Precisa ser removida antes de qualquer uso como frame de partida.
+
+## 3. Aspect ratio
+
+`sf_001` é **3:4 retrato**. O shot list especifica **16:9 em todos os takes**. Usar 3:4 como frame de partida de um take 16:9 força crop ou outpaint, e nos dois casos a composição muda.
+
+`sf_002` é **16:9 exato** (2752×1536). Aspect-wise, é o único pronto.
+
+## 4. Os dois frames são do Setup A — T1 e T2 seguem sem material
+
+Montanha enevoada no horizonte, mar aberto, luz rasante, personagem de frente para a câmera com olhar direto: é **Setup A**, composição de **T3**.
+
+Não veio nada de **Setup B** (mata atlântica fechada ao fundo, backlight quente forte, personagem de perfil olhando fora de quadro) além do `face_001`. **T1 e T2 continuam sem frame de partida e sem âncora de corpo.**
+
+## 5. Prancha contradiz o tracker de continuidade
+
+O `docs/continuity_tracker.md` trava: single-fin de ~9'0"–9'2", cera bege/marrom desgastada no deck, **leash presa ao pulso/mão**.
+
+Os dois frames mostram: prancha branca com **deck pad preto de tração na rabeta** (elemento de shortboard/mid-length, não de longboard single-fin clássico), e **leash saindo da rabeta e arrastando na água**, não presa ao pulso.
+
+Isso é contradição direta, não variação. Precisa de decisão: ou o tracker é corrigido para descrever a prancha que aparece no material aprovado, ou o material precisa ser regerado. Manter os dois como estão garante quebra de continuidade em produção.
+
+## 6. Barra da bermuda não lê como open cell nos frames
+
+`patch_thigh_macro.webp` mostra a barra como banda distinta, mais espessa, com costura própria. Nos dois frames gerados a bermuda lê como peça lisa de compressão, sem a barra diferenciada. É exatamente a confusão entre os dois materiais que o master prompt marca como "erro de continuidade visível a olho treinado".
+
+## 7. A tatuagem provavelmente é do modelo de produto, não do personagem
+
+O dossiê registra "tatuagem escura na canela direita, visível abaixo da barra da bermuda em `body_003`" como marca de continuidade **do personagem**.
+
+`patch_thigh_macro.webp` — que é foto de **produto**, cujo modelo o master prompt afirma explicitamente **não ser o talent** — mostra uma tatuagem na perna, abaixo da barra da bermuda. E `body_003` é descrito no próprio master prompt como um **diptique com detalhe de produto**.
+
+Os dois frames gerados do personagem **não têm tatuagem nenhuma**.
+
+Leitura mais provável: a tatuagem foi observada no lado de produto do diptique e atribuída ao personagem por engano. Se confirmado, sai do dossiê como marca de continuidade — o que também torna irrelevante a decisão de não descrevê-la no prompt.
+
+## 8. Sapatilha de neoprene é produto novo, fora do escopo declarado
+
+O `<contexto_da_campanha>` define a peça como **conjunto de duas partes**: top + bermuda. A sapatilha não aparece em lugar nenhum do master prompt, nem no shot list, nem no tracker.
+
+Nos dois frames o personagem está **descalço**. Se a sapatilha entra na campanha, ela muda figurino, tracker de continuidade e provavelmente pede um insert próprio. Decisão de escopo, não de execução.
