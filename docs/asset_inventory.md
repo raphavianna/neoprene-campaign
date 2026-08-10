@@ -48,13 +48,30 @@ Os arquivos em `assets/start_frames/` são as versões **com a marca d'água rem
 | `material_neoprene_body` | `assets/wardrobe/` | — | Textura do corpo da bermuda | ❌ não enviado (parcialmente coberto por `patch_thigh_macro`) |
 | `material_open_cell_hem` | `assets/wardrobe/` | — | Textura da barra, open cell | ❌ não enviado (parcialmente coberto por `patch_thigh_macro`) |
 
+## ARTE DE LOGO — derivada, canônica
+
+Extraída das macros de produto por `tools/extract_logo_art.py` e vetorizada por `tools/vectorize_logo.py`.
+
+| Arquivo | O que é | Origem |
+|---|---|---|
+| `assets/wardrobe/badge_chest_art.png` | Arte do badge do peito, 1000×1000 RGBA, branco sobre transparente, retificada e de pé | `_raw/LOGO-VERT.png` |
+| `assets/wardrobe/badge_chest.svg` | Mesma arte em vetor, 22 paths, viewBox 1000×1000, `fill-rule="evenodd"` | idem |
+
+**O que foi feito:** isolado o relevo branco por limiar, ajustada a elipse do anel externo — que é círculo perfeito no plano da peça e tem contraste muito melhor que a borda do disco —, mapeada para círculo, e corrigido o "de pé" pela posição angular das letras do arco.
+
+**O que deliberadamente não foi feito:** nenhuma letra foi reconstruída por aproximação tipográfica, e o anel traçado não foi substituído por círculo ideal. Tudo que está no SVG veio da geometria medida na macro.
+
+**Limitação registrada:** o anel sai ~5% ovalado. A retificação é afim e o badge tem distorção projetiva real na foto; um único cônico não determina a homografia sem as intrínsecas da câmera. Não afeta o compositing, onde a elipse vem da geometria medida no próprio frame — afeta só o uso do SVG isolado em escala grande.
+
+**Duas grafias, as duas corretas:** badge do peito = `USE ZERO HORA®`, com espaços e ®. Etiqueta da coxa = `USEZEROHORA`, tudo junto, sem ®, com o glifo de ondas `≋`. São lockups diferentes; não uniformizar um pelo outro.
+
 ## TIER 3 — Suporte de prompt apenas
 
 **Nunca como referência de imagem em geração.**
 
 | Slug | Descrição | Status |
 |---|---|---|
-| `infografico_etiqueta_emborrachada` | Fonte de verdade geométrica e tipográfica do patch declarada pelo master prompt | ❌ **não enviado** |
+| `infografico_etiqueta_emborrachada` | Fonte de verdade declarada pelo master prompt | ❌ não enviado — **substituído pelas macros `LOGO-VERT.png` e `LOGOS-HORI.png`, que são melhores: são o produto real, não diagrama** |
 
 ## `assets/scenario/`
 
