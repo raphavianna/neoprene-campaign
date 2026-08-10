@@ -55,11 +55,13 @@ Extraída das macros de produto por `tools/extract_logo_art.py` e vetorizada por
 | Arquivo | O que é | Origem |
 |---|---|---|
 | `assets/wardrobe/badge_chest_art.png` | Arte do badge do peito, 1000×1000 RGBA, branco sobre transparente, retificada e de pé | `_raw/LOGO-VERT.png` |
-| `assets/wardrobe/badge_chest.svg` | Mesma arte em vetor, 22 paths, viewBox 1000×1000, `fill-rule="evenodd"` | idem |
+| `assets/wardrobe/badge_chest.svg` | Mesma arte em vetor, 24 paths, viewBox 1000×1000, `fill-rule="evenodd"` | idem |
 
 **O que foi feito:** isolado o relevo branco por limiar, ajustada a elipse do anel externo — que é círculo perfeito no plano da peça e tem contraste muito melhor que a borda do disco —, mapeada para círculo, e corrigido o "de pé" pela posição angular das letras do arco.
 
-**O que deliberadamente não foi feito:** nenhuma letra foi reconstruída por aproximação tipográfica, e o anel traçado não foi substituído por círculo ideal. Tudo que está no SVG veio da geometria medida na macro.
+**Símbolo ® redesenhado — única exceção, declarada.** Na macro o ® tem 42 px e a foto não resolve os traços do R: o limiar global quebrava o anel do lado escuro e deixava dois respingos soltos; limiar local fecha o anel, mas o miolo continua ruído e não ganha legibilidade. O ® é **símbolo universal padronizado** (círculo com R), não tipografia da marca — redesenhá-lo não é o mesmo que redesenhar `USE ZERO HORA`, que continua vindo integralmente da geometria medida. Diâmetro, espessura de traço, posição e inclinação ao longo do arco saem do próprio símbolo extraído; só a forma interna do R é desenhada.
+
+**O que deliberadamente não foi feito:** nenhuma letra do wordmark foi reconstruída por aproximação tipográfica, e o anel traçado não foi substituído por círculo ideal. Fora o ®, tudo no SVG veio da geometria medida na macro.
 
 **Limitação registrada:** o anel sai ~5% ovalado. A retificação é afim e o badge tem distorção projetiva real na foto; um único cônico não determina a homografia sem as intrínsecas da câmera. Não afeta o compositing, onde a elipse vem da geometria medida no próprio frame — afeta só o uso do SVG isolado em escala grande.
 

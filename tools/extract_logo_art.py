@@ -108,10 +108,73 @@ def extrai_badge(path, thr=140):
                                    giro_aplicado=round(float(giro), 2))
 
 
+def refaz_registrado(art):
+    """Redesenha o simbolo ® e limpa a sujeira ao redor dele.
+
+    Na macro o ® tem 45 px e a foto nao resolve os tracos do R: o limiar global
+    ainda quebrava o anel do lado escuro e deixava um respingo solto. Limiar
+    local fecha o anel, mas o miolo continua ruido — nao ganha legibilidade.
+
+    O ® e' simbolo UNIVERSAL PADRONIZADO (circulo com R), nao tipografia da
+    marca. Redesenha-lo nao e' o mesmo que redesenhar "USE ZERO HORA", que
+    continua vindo integralmente da geometria medida. Diametro, espessura de
+    traco e posicao saem do proprio simbolo extraido; so a forma interna do R
+    e' desenhada.
+    """
+    n, lab, st, cen = cv2.connectedComponentsWithStats((art > 128).astype(np.uint8), 8)
+    tot = (art > 128).sum()
+    alvo, extras = None, []
+    for i in range(1, n):
+        a = st[i, cv2.CC_STAT_AREA]
+        if a > 0.03 * tot:
+            continue
+        px, py = cen[i][0] - CANVAS / 2, cen[i][1] - CANVAS / 2
+        r = np.hypot(px, py)
+        if not (0.70 * R_ANEL < r < 0.99 * R_ANEL):
+            continue
+        ang = np.degrees(np.arctan2(py, px)) % 360
+        if a < 120:                       # respingo
+            extras.append(i)
+        elif alvo is None or a < st[alvo, cv2.CC_STAT_AREA]:
+            alvo, ang_alvo = i, ang       # o ® e' o menor glifo do arco
+
+    out = art.copy()
+    for i in extras + [alvo]:
+        out[lab == i] = 0
+
+    x, y = st[alvo, cv2.CC_STAT_LEFT], st[alvo, cv2.CC_STAT_TOP]
+    w, h = st[alvo, cv2.CC_STAT_WIDTH], st[alvo, cv2.CC_STAT_HEIGHT]
+    dia = max(w, h)
+    cxs, cys = x + w / 2.0, y + h / 2.0
+
+    Z = 8
+    L = int(dia * 2 * Z)
+    tile = np.zeros((L, L), np.uint8)
+    c = (L // 2, L // 2)
+    stroke = max(2, int(round(0.16 * dia * Z)))
+    cv2.circle(tile, c, int(dia / 2 * Z - stroke / 2), 255, stroke, cv2.LINE_AA)
+    fs = cv2.getFontScaleFromHeight(cv2.FONT_HERSHEY_DUPLEX,
+                                    int(dia / 2 * Z * 0.95), max(1, stroke // 2))
+    (tw, th), _ = cv2.getTextSize('R', cv2.FONT_HERSHEY_DUPLEX, fs, max(1, stroke // 2))
+    cv2.putText(tile, 'R', (c[0] - tw // 2, c[1] + th // 2), cv2.FONT_HERSHEY_DUPLEX,
+                fs, 255, max(1, stroke // 2), cv2.LINE_AA)
+    # segue a inclinacao do arco, como as demais letras
+    Rg = cv2.getRotationMatrix2D(c, -(ang_alvo - 90.0), 1.0)
+    tile = cv2.warpAffine(tile, Rg, (L, L), flags=cv2.INTER_LINEAR)
+    tile = cv2.resize(tile, (int(dia * 2), int(dia * 2)), interpolation=cv2.INTER_AREA)
+
+    tx, ty = int(round(cxs - dia)), int(round(cys - dia))
+    reg = out[ty:ty + tile.shape[0], tx:tx + tile.shape[1]]
+    out[ty:ty + tile.shape[0], tx:tx + tile.shape[1]] = np.maximum(reg, tile)
+    return out, dict(diametro=int(dia), angulo=round(float(ang_alvo), 1),
+                     respingos_removidos=len(extras))
+
+
 def main():
     S = '/tmp/claude-0/-home-user-neoprene-campaign/2a358ccf-002b-5c2c-9538-4f719f033e34/scratchpad/'
     art, foto, info = extrai_badge('assets/_raw/LOGO-VERT.png')
-    print(json.dumps(dict(fonte='LOGO-VERT.png', **info), indent=2))
+    art, reg_info = refaz_registrado(art)
+    print(json.dumps(dict(fonte='LOGO-VERT.png', **info, registrado=reg_info), indent=2))
 
     art_s = cv2.GaussianBlur(art, (0, 0), 1.0)
     rgba = np.dstack([np.full_like(art_s, 255)] * 3 + [art_s])
