@@ -14,12 +14,19 @@
 | Slug | Caminho | Origem | Descrição | Risco de logo | Status |
 |---|---|---|---|---|---|
 | `face_001` | `assets/identity/face/face_001.png` | `rosto.png` (1024×1024) | Retrato três-quartos, cabelo molhado com mechas definidas e gotas visíveis, boca levemente entreaberta, olhar fora de quadro. Fundo verde desfocado de mata + céu estourado = **Setup B**. Bate com o dossiê. | Baixo — patch fora de quadro | ✅ importado |
-| `body_001` | `assets/identity/body/` | — | Setup A, plano médio frontal, paisagem | Alto | ❌ **não enviado** |
-| `body_002` | `assets/identity/body/` | — | Setup A, plano médio frontal, retrato | Alto | ❌ **não enviado** |
-| `body_003` | `assets/identity/body/` | — | Setup B, plano aberto lateral, diptique com detalhe | Médio | ❌ **não enviado** |
-| `body_004` | `assets/identity/body/` | — | Setup B, transição na água rasa, backlight forte | Médio | ❌ **não enviado** |
+| `body_001` | `assets/identity/body/body_001_setup_a_paisagem.png` | `nedium-frame.png` (2752×1536) | **Setup A, plano médio frontal, PAISAGEM.** Montanha enevoada ao fundo, olhar direto, gota escorrendo da mão | Alto | ✅ **identificado** |
+| `body_002` | `assets/identity/body/body_002_setup_a_retrato.png` | `frame-start-01.png` (1792×2390) | **Setup A, plano médio frontal, RETRATO.** Mesmo ponto, corpo inteiro, olhar direto | Alto | ✅ **identificado** |
+| `body_003` | `assets/identity/body/` | — | Setup B, plano aberto lateral, díptico com detalhe de patch/prancha | Médio | ❌ **não enviado** |
+| `body_004` | `assets/identity/body/` | — | Setup B, transição na água rasa, backlight forte, díptico com detalhe | Médio | ❌ **não enviado** |
 
-**Consequência operacional:** sem nenhum `body_*`, a regra de identity lock (`face_001` + um `body_*` em todo plano médio ou mais próximo) **não pode ser cumprida como escrita**. Os dois frames de partida abaixo podem cobrir o papel de âncora de corpo, mas são **saída gerada**, não foto de ensaio — usar um output como âncora propaga qualquer erro que ele já carregue. Ver os achados críticos no fim deste arquivo.
+**Correção de catalogação.** `body_001` e `body_002` já estavam no repositório desde o primeiro lote — eu os havia classificado apenas como frames de partida, sem perceber que são também as duas referências de corpo de Setup A que o master prompt descreve. A pista é literal: a linha 102 do `CLAUDE.md` diz "Setup A, plano médio frontal, **paisagem e retrato**", e os dois arquivos são exatamente um 16:9 paisagem e um 3:4 retrato do mesmo setup. Os arquivos acumulam os dois papéis: são referência de identidade **e** frame de partida do T3.
+
+**Consequência operacional, revisada:**
+
+- **T3 está ancorado.** A regra de identity lock (`face_001` + um `body_*` em plano médio ou mais próximo) **fecha** para o T3: existem `face_001`, `body_001` e `body_002`, que são exatamente a ancoragem que o shot list pede para esse take.
+- **T1 e T2 não estão.** Os dois são Setup B e dependem de `body_004` e `body_003`. De Setup B só existe o `face_001`, que é retrato macro — não serve de âncora de corpo, nem traz a prancha, nem a faixa de areia, nem o backlight da locação.
+
+Ressalva que continua valendo: `body_001` e `body_002` são **saída gerada** da campanha de still, não fotografia. Carregavam marca d'água do gerador e o logo adulterado, ambos já corrigidos. Usar output como âncora propaga o que ele ainda carregue de errado.
 
 ## FRAME DE PARTIDA
 
