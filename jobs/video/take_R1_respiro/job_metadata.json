@@ -1,0 +1,17 @@
+{
+  "take": "R1",
+  "slug": "respiro",
+  "status": "aguardando_aprovacao",
+  "modelo": "seedance_2_5",
+  "parametros": {"mode":"omni_reference","duration":4,"resolution":"720p","aspect_ratio":"16:9","generate_audio":true},
+  "medias": {
+    "start_image": {"asset":"assets/start_frames/sf_003_setup_b_respiro_16x9.png","media_id":"b6117dae-0faf-453e-a88a-87fd67d193a2"},
+    "image_references": []
+  },
+  "preflight": {"custo_creditos":26,"preset_declinado":"IN THE DARK"},
+  "decisao_de_logo": "NULO. O recorte 16:9 central do face_001 deixa o peito fora de quadro -- so a gola entra no limite inferior. Nao ha patch em quadro, logo nao ha o que travar nem o que neutralizar.",
+  "por_que_uma_imagem_so": "Mesma licao do R2: multiplas referencias colapsam os papeis. O proprio frame de partida carrega rosto e identidade.",
+  "prompt_caracteres": 2953,
+  "creditos_consumidos_ate_aqui": 0,
+  "job_id": null
+}
