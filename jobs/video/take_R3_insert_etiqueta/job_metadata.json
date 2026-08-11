@@ -1,0 +1,31 @@
+{
+  "take": "R3",
+  "slug": "insert_etiqueta",
+  "status": "gerado_aguardando_quality_gate",
+  "job_id": "85a5d7c7-714c-4b68-91c9-52c0ca556911",
+  "modelo": "seedance_2_5",
+  "parametros": {"mode":"omni_reference","duration":4,"resolution":"720p","aspect_ratio":"16:9","generate_audio":true},
+  "medias": {
+    "start_image": {"asset":"assets/start_frames/sf_004_insert_etiqueta_16x9.png","media_id":"926c6bc0-f692-43c1-af9a-485348b72eae"},
+    "image_references": []
+  },
+  "custo_creditos": 26,
+  "timestamp_utc": "2026-08-11T02:25:58Z",
+  "saida": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260811_022558_85a5d7c7-714c-4b68-91c9-52c0ca556911.mp4",
+  "por_que_etiqueta_e_nao_badge": "Geometria. O badge circular mede 469x539; um recorte 16:9 de 750 de largura da 750x422, e 539 nao cabe em 422 -- o corte comeria o arco USE ZERO HORA(R). A faixa de conteudo da LOGOS-HORI e' 750x368 (2.04:1), mais larga que 16:9, entao o recorte de 654x368 contem a etiqueta inteira sem cortar nada. Ganho editorial: a etiqueta foi a marca que pior falhou no R2.",
+  "decisao_de_logo": "A ancora E' o logo real fotografado. O risco se inverte a favor: nao ha tipografia a gerar, ha tipografia a preservar. O prompt tem bloco WHAT MUST NOT CHANGE dedicado a isso.",
+  "duracao_vs_shot_list": "Shot list pede 3s; o minimo do seedance_2_5 e' 4s. Gerado em 4s, cortar para 3s na montagem se desejado.",
+  "prompt_caracteres": 2816,
+  "quality_gate": {
+    "status": "pendente",
+    "bloqueio": "O proxy desta sessao nega o CDN da Higgsfield. Preciso do mp4 subido no chat.",
+    "ordem_de_medicao": [
+      "1. frame 0 contra sf_004 -- com uma imagem so, esperar algo proximo dos 47.9%/0.88 do R1",
+      "2. TIPOGRAFIA: as letras mudam de forma ao longo dos 4s? E o item que define o take. Medir variacao da regiao da etiqueta entre frames, como foi feito no badge do R2 (la deu 5.31 de media e 11.28 de pico)",
+      "3. camera travada: deriva de fundo proxima de zero",
+      "4. o brilho percorre o relevo, ou a imagem so pulsa?",
+      "5. grao pebbled do neoprene preservado, nao suavizado",
+      "6. flicker e motion blur"
+    ]
+  }
+}
