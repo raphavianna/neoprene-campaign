@@ -1,12 +1,21 @@
 {
   "take": "R3",
   "slug": "insert_etiqueta",
-  "status": "gerado_aguardando_quality_gate",
+  "status": "aprovado_com_ressalva",
   "job_id": "85a5d7c7-714c-4b68-91c9-52c0ca556911",
   "modelo": "seedance_2_5",
-  "parametros": {"mode":"omni_reference","duration":4,"resolution":"720p","aspect_ratio":"16:9","generate_audio":true},
+  "parametros": {
+    "mode": "omni_reference",
+    "duration": 4,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": true
+  },
   "medias": {
-    "start_image": {"asset":"assets/start_frames/sf_004_insert_etiqueta_16x9.png","media_id":"926c6bc0-f692-43c1-af9a-485348b72eae"},
+    "start_image": {
+      "asset": "assets/start_frames/sf_004_insert_etiqueta_16x9.png",
+      "media_id": "926c6bc0-f692-43c1-af9a-485348b72eae"
+    },
     "image_references": []
   },
   "custo_creditos": 26,
@@ -17,15 +26,65 @@
   "duracao_vs_shot_list": "Shot list pede 3s; o minimo do seedance_2_5 e' 4s. Gerado em 4s, cortar para 3s na montagem se desejado.",
   "prompt_caracteres": 2816,
   "quality_gate": {
-    "status": "pendente",
-    "bloqueio": "O proxy desta sessao nega o CDN da Higgsfield. Preciso do mp4 subido no chat.",
-    "ordem_de_medicao": [
-      "1. frame 0 contra sf_004 -- com uma imagem so, esperar algo proximo dos 47.9%/0.88 do R1",
-      "2. TIPOGRAFIA: as letras mudam de forma ao longo dos 4s? E o item que define o take. Medir variacao da regiao da etiqueta entre frames, como foi feito no badge do R2 (la deu 5.31 de media e 11.28 de pico)",
-      "3. camera travada: deriva de fundo proxima de zero",
-      "4. o brilho percorre o relevo, ou a imagem so pulsa?",
-      "5. grao pebbled do neoprene preservado, nao suavizado",
-      "6. flicker e motion blur"
+    "status": "aprovado_com_ressalva",
+    "auditoria": "docs/auditoria_R3_job_85a5d7c7.md",
+    "tipografia": {
+      "veredito": "passou",
+      "corr_forma_wordmark_min": 0.895,
+      "corr_forma_wordmark_media": 0.943,
+      "corr_forma_glifo_media": 0.956,
+      "corr_forma_monograma_media": 0.815,
+      "variacao_media": 0.5,
+      "variacao_pico": 0.94,
+      "comparacao_R2_badge": "5.31 media / 11.28 pico"
+    },
+    "frame_de_partida": {
+      "corr_crua": 0.216,
+      "corr_apos_alinhamento": 0.603,
+      "ecc_afim": {
+        "escala": [
+          1.107,
+          1.079
+        ],
+        "rotacao_graus": 0.06,
+        "translacao_px": [
+          -89.1,
+          -6.1
+        ]
+      },
+      "leitura": "composicao honrada com push-in de 10%; a luz foi reescrita de cinza para golden hour por contradicao entre o bloco de abertura e o bloco LOOK do proprio prompt"
+    },
+    "camera": {
+      "deriva_px_em_4s": [
+        0.2,
+        0.2
+      ],
+      "nitidez_vs_brilho_corr": 0.968,
+      "leitura": "travada; oscilacao de nitidez e' o especular, nao respiracao de foco"
+    },
+    "brilho": {
+      "centroide_px": [
+        209,
+        100,
+        445,
+        245
+      ],
+      "amplitude_px": 361,
+      "maior_salto_px": 25.4,
+      "veredito": "percorre, nao pulsa; duas inversoes de direcao contra a varredura unica pedida"
+    },
+    "grao": {
+      "desvio": 5.32,
+      "corr_entre_frames": 0.995,
+      "veredito": "REPROVADO - padrao congelado; corrigir com grao temporal em pos"
+    },
+    "flicker": 0.246,
+    "audio": "trilha mp4a presente",
+    "elemento_inventado": "gota d'agua sobre a face da etiqueta, nao prevista no prompt nem na referencia; aceita",
+    "pendencias": [
+      "cortar para 3s na montagem",
+      "grao temporal em pos",
+      "entrada sugerida a partir de ~0.9s"
     ]
   }
 }
