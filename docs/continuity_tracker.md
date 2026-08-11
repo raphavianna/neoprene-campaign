@@ -45,9 +45,9 @@ A cadeia R1 → R2 é um **corte entre dois setups**, não uma continuação de 
 | Luz | contraluz quente por trás e à esquerda, halação forte na água | rasante e mais fria, sombras longas | de quente para frio |
 | Fundo | mata atlântica desfocada, sem linha de horizonte | mar aberto, montanha enevoada | B fica mais perto da água |
 | Olhar | fora de quadro, à direita | direto na lente | R1 desvia, R2 encara |
-| Movimento | parado; nos últimos 0,5s inicia giro de cabeça e transferência de peso | caminhando de encontro à câmera | o giro de R1 **motiva** o corte |
+| Movimento | parado; giro de cabeça iniciado e **cortado em 3,12s antes de completar** | caminhando de encontro à câmera | o giro de R1 **motiva** o corte |
 | Figurino | idêntico | idêntico | sem variação |
-| Boca | fechada | fechada | sem variação |
+| Boca | **entreaberta**, coerente com o `face_001` que ancora o take | fechada | corrigido após a auditoria do R1 |
 
 ## Por que o corte funciona
 
@@ -59,7 +59,7 @@ R1 termina com ele começando a virar em direção à lente e o peso indo para a
 - R1 com luz rasante fria em vez de contraluz quente.
 - Horizonte ou mar visível em R1 — o fundo de R1 é mata, e mar em quadro colocaria os dois takes no mesmo ponto.
 - Qualquer deslocamento de corpo em R1 além da transferência de peso final.
-- Boca aberta em qualquer um dos dois.
+- Boca aberta no R2. No R1 a boca entreaberta é a referência, não um defeito.
 
 ## Medição do estado final do R2
 

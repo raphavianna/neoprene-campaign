@@ -1,7 +1,7 @@
 {
   "take": "R1",
   "slug": "respiro",
-  "status": "gerado_aguardando_quality_gate",
+  "status": "aprovado_com_corte",
   "modelo": "seedance_2_5",
   "parametros": {
     "mode": "omni_reference",
@@ -30,16 +30,27 @@
   "timestamp_utc": "2026-08-11T00:50:03Z",
   "saida": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260811_005003_8aa3bdbd-5388-41c6-9109-36a95c121eac.mp4",
   "quality_gate": {
-    "status": "pendente",
-    "bloqueio": "O proxy desta sessao nega o CDN da Higgsfield. Preciso do mp4 subido no chat para medir.",
-    "ordem_de_medicao": [
-      "1. frame 0 contra sf_003 -- o mesmo teste que reprovou o R2",
-      "2. fundo sem linha de horizonte e sem mar. Se aparecer, quebra a cadeia com o R2",
-      "3. molhado visivelmente maior que o R2, por contagem de especulares pequenos no rosto",
-      "4. camera travada: deriva de enquadramento entre o primeiro e o ultimo frame proxima de zero",
-      "5. ultimo frame: o giro de cabeca comecou, porque e ele que motiva o corte",
-      "6. boca fechada nos 4 segundos",
-      "7. grao, flicker e motion blur, como no R2"
+    "status": "aprovado_com_corte",
+    "documento": "docs/auditoria_R1_job_8aa3bdbd.md",
+    "corte": "3.12s (frame 75) dos 4.04s gerados",
+    "frame_de_partida": {
+      "pixels_diferentes_pct": 47.9,
+      "correlacao": 0.88,
+      "comparacao_R2": "R2 deu 90.4% e 0.45 com tres imagens. Com uma imagem so o modelo honra o enquadramento."
+    },
+    "continuidade": {
+      "sem_horizonte": true,
+      "molhado_R1_vs_R2": "405 contra 118 especulares, ~3.4x",
+      "camera_travada": "fundo desloca -0.7px em x e -3.9px em y em 4s"
+    },
+    "anti_ai": {
+      "flicker": 0.203,
+      "motion_blur_amplitude_pct": 82,
+      "grao": "INCONCLUSIVO neste enquadramento -- nao ha regiao lisa nao saturada para medir"
+    },
+    "notas": [
+      "giro de cabeca completou em quadro; resolvido por corte em 3.12s, sem nova geracao",
+      "boca entreaberta ate 2.6s: erro meu de especificacao, o face_001 ja tem boca entreaberta por dossie. Corrigir o contrato, nao o take"
     ]
   }
 }
