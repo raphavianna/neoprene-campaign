@@ -1,17 +1,45 @@
 {
   "take": "R1",
   "slug": "respiro",
-  "status": "aguardando_aprovacao",
+  "status": "gerado_aguardando_quality_gate",
   "modelo": "seedance_2_5",
-  "parametros": {"mode":"omni_reference","duration":4,"resolution":"720p","aspect_ratio":"16:9","generate_audio":true},
+  "parametros": {
+    "mode": "omni_reference",
+    "duration": 4,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": true
+  },
   "medias": {
-    "start_image": {"asset":"assets/start_frames/sf_003_setup_b_respiro_16x9.png","media_id":"b6117dae-0faf-453e-a88a-87fd67d193a2"},
+    "start_image": {
+      "asset": "assets/start_frames/sf_003_setup_b_respiro_16x9.png",
+      "media_id": "b6117dae-0faf-453e-a88a-87fd67d193a2"
+    },
     "image_references": []
   },
-  "preflight": {"custo_creditos":26,"preset_declinado":"IN THE DARK"},
+  "preflight": {
+    "custo_creditos": 26,
+    "preset_declinado": "IN THE DARK"
+  },
   "decisao_de_logo": "NULO. O recorte 16:9 central do face_001 deixa o peito fora de quadro -- so a gola entra no limite inferior. Nao ha patch em quadro, logo nao ha o que travar nem o que neutralizar.",
   "por_que_uma_imagem_so": "Mesma licao do R2: multiplas referencias colapsam os papeis. O proprio frame de partida carrega rosto e identidade.",
   "prompt_caracteres": 2953,
   "creditos_consumidos_ate_aqui": 0,
-  "job_id": null
+  "job_id": "8aa3bdbd-5388-41c6-9109-36a95c121eac",
+  "custo_real": 26,
+  "timestamp_utc": "2026-08-11T00:50:03Z",
+  "saida": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260811_005003_8aa3bdbd-5388-41c6-9109-36a95c121eac.mp4",
+  "quality_gate": {
+    "status": "pendente",
+    "bloqueio": "O proxy desta sessao nega o CDN da Higgsfield. Preciso do mp4 subido no chat para medir.",
+    "ordem_de_medicao": [
+      "1. frame 0 contra sf_003 -- o mesmo teste que reprovou o R2",
+      "2. fundo sem linha de horizonte e sem mar. Se aparecer, quebra a cadeia com o R2",
+      "3. molhado visivelmente maior que o R2, por contagem de especulares pequenos no rosto",
+      "4. camera travada: deriva de enquadramento entre o primeiro e o ultimo frame proxima de zero",
+      "5. ultimo frame: o giro de cabeca comecou, porque e ele que motiva o corte",
+      "6. boca fechada nos 4 segundos",
+      "7. grao, flicker e motion blur, como no R2"
+    ]
+  }
 }
