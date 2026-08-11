@@ -1,7 +1,7 @@
 {
   "take": "R2",
   "slug": "encontro_camera",
-  "status": "aguardando_aprovacao",
+  "status": "gerado_aguardando_quality_gate",
   "modelo": "seedance_2_5",
   "parametros": {
     "mode": "omni_reference",
@@ -16,10 +16,14 @@
       "media_id": "af995694-0861-40c6-bac3-df81d079768d"
     },
     "image_references": [
-      {"asset": "assets/identity/face/face_001.png",
-       "media_id": "d1672a28-11d6-41e7-aacf-1b84f0030a93"},
-      {"asset": "assets/identity/body/body_002_setup_a_retrato.png",
-       "media_id": "d8d39bdf-0ebd-49bb-8cb7-c44bda0d473c"}
+      {
+        "asset": "assets/identity/face/face_001.png",
+        "media_id": "d1672a28-11d6-41e7-aacf-1b84f0030a93"
+      },
+      {
+        "asset": "assets/identity/body/body_002_setup_a_retrato.png",
+        "media_id": "d8d39bdf-0ebd-49bb-8cb7-c44bda0d473c"
+      }
     ]
   },
   "preflight": {
@@ -32,7 +36,40 @@
   "continuidade": "Primeiro take produzido do projeto, sem take anterior para confrontar. Confere contra o tracker: descalco, prancha sob o braco direito, cabelo molhado com mechas agrupadas, sheen discreto coerente com Setup A (mais distante da agua que o Setup B do R1).",
   "prompt_caracteres": 3447,
   "creditos_consumidos_ate_aqui": 0,
-  "job_id": null,
-  "custo_real": null,
-  "quality_gate": null
+  "job_id": "b88358a2-8b09-436b-aaa0-c428157d05c6",
+  "custo_real": 52,
+  "quality_gate": {
+    "status": "pendente",
+    "bloqueio": "Checklist anti-AI visual nao executavel desta sessao. O proxy nega upload.higgsfield.ai e o CDN de saida (403 de politica), entao nao da para baixar o mp4 nem extrair frames.",
+    "verificado_sem_ver_o_video": {
+      "parametros_conferem_com_o_aprovado": true,
+      "resolucao": "1280x720, 16:9",
+      "duracao_s": 8,
+      "audio_gerado": true,
+      "start_image": "sf_002, com badge e etiqueta ja compostos no frame 0",
+      "referencias_identidade": "face_001 + body_002 -- identity lock cumprido",
+      "preset_declinado": "IN THE DARK"
+    },
+    "depende_de_inspecao_visual": [
+      "checklist anti-AI de video do HIGG_SystemPrompt na integra",
+      "fidelidade do patch ao longo dos 8s: o frame 0 esta correto, falta confirmar que o modelo nao redesenhou o texto adiante",
+      "coerencia entre poliamida e neoprene em movimento",
+      "aderencia a familia de lente e luz da biblia de cinematografia",
+      "fisica da agua e das gotas",
+      "cabelo em mechas agrupadas, nao em blob",
+      "pes descalcos e prancha sob o braco direito"
+    ]
+  },
+  "timestamp_utc": "2026-08-10T23:57:17Z",
+  "saida": {
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260810_235717_b88358a2-8b09-436b-aaa0-c428157d05c6.mp4",
+    "resolucao": [
+      1280,
+      720
+    ],
+    "duracao_s": 8,
+    "aspect": "16:9",
+    "audio": true,
+    "nota": "mp4 NAO versionado: o proxy desta sessao nega o CDN da Higgsfield por politica de egresso. URL e job_id ficam registrados."
+  }
 }
