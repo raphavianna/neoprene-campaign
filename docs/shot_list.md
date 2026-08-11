@@ -1,7 +1,84 @@
 # Shot list — neoprene-campaign
 
+> **Status:** Onda 1 **revisada** após o inventário real de assets. A versão original do master prompt está preservada mais abaixo, em "Onda 1 — proposta original".
+
+---
+
+# ONDA 1 REVISADA — o que o material sustenta
+
+## Por que revisar
+
+O shot list original pede uma progressão de três takes atravessando dois pontos da praia, e depende de quatro referências de corpo: `body_001`–`body_002` (Setup A) e `body_003`–`body_004` (Setup B).
+
+O inventário real tem **duas** referências de corpo, ambas de **Setup A**, mais um retrato de **Setup B** (`face_001`). Não existe nenhuma referência de corpo em Setup B — logo T1 e T2, como escritos, não têm âncora. Forçá-los significaria o modelo inventar a locação inteira do Setup B a partir de descrição verbal, que é exatamente o risco que este projeto existe para eliminar.
+
+A revisão abaixo usa **só o que existe**, e mantém a direção narrativa que o master prompt estabeleceu: o personagem vem do Setup B em direção ao Setup A, secando progressivamente.
+
+## Os três takes
+
+### R1 — Respiro · close · Setup B
+
+- **Papel:** abertura. Estabelece o personagem e o Setup B sem precisar de plano de corpo.
+- **Âncora e frame de partida:** `face_001` (1024×1024).
+- **Estado físico:** pico de molhado — mechas agrupadas, gotas escorrendo do cabelo e do rosto.
+- **Ação:** o personagem respira, gotas escorrem, olhar fora de quadro com micro-deriva. Sem deslocamento de corpo.
+- **Luz:** Setup B, contraluz quente, mata desfocada ao fundo.
+- **Câmera:** estática ou micro-deriva de respiração. Nada de trajetória, porque não há referência de corpo para sustentar movimento.
+- **Duração:** 4s.
+- **Risco de logo:** NULO — patch fora de quadro.
+- **Áudio:** arrebentação próxima, vento.
+
+### R2 — Encontro com a câmera · plano médio · Setup A
+
+- **Papel:** o take principal. É o T3 do shot list original, sem alteração de intenção.
+- **Âncora:** `body_001` + `body_002` + `face_001`. **Frame de partida:** `sf_002` (16:9 nativo).
+- **Estado físico:** molhado, sheen mais discreto que R1 — coerente com estar mais longe da água.
+- **Ação:** caminha de encontro à câmera, olhar direto, expressão neutra-séria, gota escorrendo da mão.
+- **Luz:** Setup A, mais rasante e fria, montanha ao fundo.
+- **Câmera:** 85mm equiv., f/2.8, handheld micro-estabilizado.
+- **Duração:** 8s.
+- **Risco de logo:** RESOLVIDO no frame de partida — badge e etiqueta já compostos com a arte canônica.
+- **Áudio:** arrebentação de fundo mais suave, vento.
+
+### R3 — Insert de produto · macro
+
+- **Papel:** cutaway de edição.
+- **Âncora e frame de partida:** `_raw/LOGO-VERT.png`, a macro real do badge sobre a peça.
+- **Ação:** respiração mínima de câmera sobre o relevo de borracha, com brilho deslizando.
+- **Câmera:** 100mm macro equiv., f/2.8, estática.
+- **Duração:** 3s.
+- **Risco de logo:** alto por definição, mas a âncora **é** o logo real fotografado — o risco se inverte a favor.
+
+**Ordem de exibição:** R1 → R2, com R3 como cutaway. A direção Setup B → Setup A e o gotejamento decrescente do tracker de continuidade seguem válidos.
+
+## Entrega de formato — o papel do `sf_001`
+
+O `sf_001` não é um segundo momento narrativo: é o **mesmo take em enquadramento retrato**. Medido:
+
+| Origem | 16:9 | 9:16 | 4:5 |
+|---|---|---|---|
+| `sf_002` (2752×1536) | **nativo** | perde 69% | perde 55% |
+| `sf_001` (1792×2390) | perde 58% | **perde 25%** | **perde 6%** |
+
+Ou seja: `sf_002` é o master horizontal, `sf_001` é o master vertical. O "problema de aspect" do `sf_001` deixa de ser defeito e vira função — ele atende Reels e TikTok sem crop destrutivo.
+
+## O que sai de escopo nesta revisão
+
+- **T1 e T2 originais** (Setup B, arrebentação e caminhada observacional): sem âncora de corpo. Ficam fora até existir material de Setup B.
+- **Onda 2** (bloco de ação): já estava fora, e segue.
+
+## Caminho para recuperar o arco completo
+
+Se o arco de três takes atravessando os dois setups for desejado, o passo é gerar **dois stills novos de Setup B** — identidade ancorada em `face_001` + `body_001/002`, locação descrita pela bíblia —, aprová-los como `body_003` e `body_004`, e só então produzir T1 e T2.
+
+Isso consome crédito de **imagem** antes de qualquer vídeo, e é ciclo de aprovação próprio. Não iniciado.
+
+---
+
+# Onda 1 — proposta original (preservada)
+
+
 > Extrato de consulta. Fonte de verdade: `CLAUDE.md` → `<fase_1_shot_list_detalhado>`.
-> **Status geral:** proposto, aguardando aprovação da Fase 1. Nenhum take produzido.
 
 ## Correção estrutural do arco (v2)
 

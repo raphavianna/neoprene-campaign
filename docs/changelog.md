@@ -1,5 +1,41 @@
 # Changelog — neoprene-campaign
 
+## [Fase 0] Marcas d'água removidas e escopo da sapatilha decidido
+
+**Marcas d'água do gerador removidas dos dois frames de partida.** Eram três no total, não duas: `sf_001` tinha uma, `sf_002` tinha **duas** — a segunda passou despercebida na primeira leitura e só apareceu na varredura.
+
+Método (script versionado em `tools/remove_generator_watermark.py`): a marca é sobreposição de branco com transparência constante, portanto invertível — `bg = (obs − a·m·255)/(1 − a·m)`. Recupera a textura real do fundo em vez de inventar pixel. Expoente do astroide medido em 0,667 pela extensão diagonal; alpha 0,289 por dois estimadores independentes que concordaram. Só a faixa de 3 px do contorno recebe inpaint. Área alterada: 0,10% e 0,16% dos pixels. Originais intactos em `assets/_raw/`.
+
+Ressalva: sobre a espuma clara de `sf_002` o estimador de alpha perde precisão; o alpha das duas marcas dessa imagem foi fechado por inspeção visual em torno do valor medido em `sf_001`.
+
+**Sapatilha de neoprene: catálogo de produto apenas.** Decisão do usuário. O personagem fica descalço em todos os takes — item agora travado no tracker de continuidade. A peça segue catalogada em `assets/wardrobe/` como Tier 2, mas não entra como figurino nem como referência de imagem na Onda 1.
+
+Bloqueio remanescente nos dois frames: tipografia do patch adulterada. Em `sf_001`, também o aspect 3:4 contra os 16:9 do shot list.
+
+## [Fase 0] Primeiro lote de assets — 6 arquivos classificados
+
+Upload recebido em `assets/_raw/` e copiado para os tiers (originais preservados):
+
+- `rosto.png` → `assets/identity/face/face_001.png` (Tier 1, Setup B)
+- `frame-start-01.png` → `assets/start_frames/sf_001_setup_a_encontro_camera_3x4.png`
+- `nedium-frame.png` → `assets/start_frames/sf_002_setup_a_plano_medio_16x9.png`
+- `front.webp` → `assets/wardrobe/top_front_product.webp` (Tier 2)
+- `006ebe…webp` → `assets/wardrobe/patch_thigh_macro.webp` (Tier 2)
+- `64f99…webp` → `assets/wardrobe/bootie_sole_product.webp` (Tier 2, produto fora do escopo)
+
+**Oito achados críticos registrados em `docs/asset_inventory.md`.** Os que bloqueiam produção:
+
+1. Tipografia do patch adulterada nos dois frames gerados — o `achado_critico_logo` confirmado no material real.
+2. Marca d'água do gerador nos dois frames — inaceitável em frame de partida, tende a se propagar pelo take.
+3. `sf_001` é 3:4; o shot list exige 16:9. Só `sf_002` tem aspect correto.
+4. Os dois frames são Setup A (composição de T3) — T1 e T2 seguem sem frame de partida e sem âncora de corpo.
+5. Prancha dos frames (deck pad preto, leash na rabeta) contradiz o tracker (single-fin 9', leash no pulso).
+6. Barra da bermuda não lê como open cell nos frames.
+7. A tatuagem atribuída ao personagem provavelmente é do modelo de produto — revisão do dossiê pendente.
+8. Sapatilha de neoprene é produto novo, fora do conjunto de duas peças declarado.
+
+Nenhum `body_001`–`body_004` foi enviado, então a regra de identity lock não pode ser cumprida como escrita. Nenhum crédito consumido.
+
 ## [Fase 0] Frame de partida e guia de upload
 
 - `docs/como_subir_assets.md` criado: passo a passo de upload, limites do navegador, destino por tipo de arquivo e a distinção entre frame de partida e imagem de referência.

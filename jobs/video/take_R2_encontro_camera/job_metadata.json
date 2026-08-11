@@ -1,0 +1,78 @@
+{
+  "take": "R2",
+  "slug": "encontro_camera",
+  "status": "reprovado",
+  "modelo": "seedance_2_5",
+  "parametros": {
+    "mode": "omni_reference",
+    "duration": 8,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": true
+  },
+  "medias": {
+    "start_image": {
+      "asset": "assets/start_frames/sf_002_setup_a_plano_medio_16x9.png",
+      "media_id": "af995694-0861-40c6-bac3-df81d079768d"
+    },
+    "image_references": [
+      {
+        "asset": "assets/identity/face/face_001.png",
+        "media_id": "d1672a28-11d6-41e7-aacf-1b84f0030a93"
+      },
+      {
+        "asset": "assets/identity/body/body_002_setup_a_retrato.png",
+        "media_id": "d8d39bdf-0ebd-49bb-8cb7-c44bda0d473c"
+      }
+    ]
+  },
+  "preflight": {
+    "custo_creditos": 52,
+    "saldo_no_preflight": 2975,
+    "plano": "ultra",
+    "preset_recomendado_declinado": "IN THE DARK (24bae836-2c4a-48e0-89b6-49fcc0b21612)"
+  },
+  "decisao_de_logo": "Resolvido no frame de partida por compositing deterministico. O badge do peito e a etiqueta da coxa entram no frame 0 com a arte canonica extraida das macros de produto. O prompt instrui a carregar essas marcas adiante sem redesenhar. Nao ha area neutralizada nem dependencia de composicao em pos.",
+  "continuidade": "Primeiro take produzido do projeto, sem take anterior para confrontar. Confere contra o tracker: descalco, prancha sob o braco direito, cabelo molhado com mechas agrupadas, sheen discreto coerente com Setup A (mais distante da agua que o Setup B do R1).",
+  "prompt_caracteres": 3447,
+  "creditos_consumidos_ate_aqui": 0,
+  "job_id": "b88358a2-8b09-436b-aaa0-c428157d05c6",
+  "custo_real": 52,
+  "quality_gate": {
+    "status": "reprovado",
+    "documento": "docs/auditoria_R2_job_b88358a2.md",
+    "motivo_principal": "O frame de partida foi ignorado. Frame 0 do video difere do start frame em 90.4% dos pixels, correlacao 0.45. O modo omni_reference colapsou start_image junto com as demais referencias, e o modelo redesenhou o badge e a etiqueta -- o erro de tipografia voltou.",
+    "aprovado": {
+      "formato": "1280x720, 16:9, 24.000fps, 8.04s",
+      "grao": "correlacao do padrao entre frames -0.007, muda a cada frame como filme",
+      "flicker": "desvio 0.29 sobre luminancia 142.6, praticamente nulo",
+      "motion_blur": "variancia do laplaciano oscila 95% com o movimento",
+      "maos": "cinco dedos, anatomia correta",
+      "identidade": "estavel nos 8s",
+      "pele": "poros e barba rala visiveis",
+      "peca_duas_partes": "top e bermuda distinguiveis",
+      "pes_descalcos": true,
+      "prancha": "braco direito, leash presente",
+      "agua": "sem respingo acima da canela"
+    },
+    "reprovado_itens": {
+      "start_frame_ignorado": "90.4% dos pixels diferem",
+      "badge_peito": "monograma aproximado, arco em ruido tipografico, muda frame a frame (variacao media 5.31, pico 11.28)",
+      "etiqueta_coxa": "texto ilegivel em 1-2s e DESAPARECE a partir de 3s -- quebra de continuidade dentro do take",
+      "expressao": "boca aberta aos 7.0s nao pedida no brief"
+    },
+    "proximo_passo": "Testar omni_reference com o start frame sozinho, sem face_001 nem body_002. Hipotese: multiplas referencias colapsam os papeis. Custo 52 creditos."
+  },
+  "timestamp_utc": "2026-08-10T23:57:17Z",
+  "saida": {
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260810_235717_b88358a2-8b09-436b-aaa0-c428157d05c6.mp4",
+    "resolucao": [
+      1280,
+      720
+    ],
+    "duracao_s": 8,
+    "aspect": "16:9",
+    "audio": true,
+    "nota": "mp4 NAO versionado: o proxy desta sessao nega o CDN da Higgsfield por politica de egresso. URL e job_id ficam registrados."
+  }
+}

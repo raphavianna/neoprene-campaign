@@ -1,0 +1,37 @@
+{
+  "take": "R2",
+  "tentativa": 2,
+  "status": "gerado_aguardando_quality_gate",
+  "job_id": "964e18c2-7a68-4982-96d7-4186ee8270a4",
+  "modelo": "seedance_2_5",
+  "nota_modelo": "Seedance 2.0 nao existe no catalogo da Higgsfield. models_explore lista apenas seedance_2_5, que e' o sucessor direto.",
+  "hipotese_testada": "Na tentativa 1 as tres imagens anexadas colapsaram os papeis: o eco dos parametros devolveu tudo em reference_images e o modelo recompos o plano, ignorando o frame de partida. Aqui vai UMA imagem so, o frame de partida, para eliminar a ambiguidade de papel.",
+  "parametros": {
+    "mode": "omni_reference",
+    "duration": 8,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": true
+  },
+  "medias": {
+    "start_image": {
+      "asset": "assets/start_frames/sf_002_setup_a_plano_medio_16x9.png",
+      "media_id": "af995694-0861-40c6-bac3-df81d079768d"
+    },
+    "image_references": []
+  },
+  "mudancas_no_prompt": [
+    "Abre travando o frame 0: nao recompor, casar o primeiro frame com a imagem anexada. Antes essa instrucao estava enterrada no bloco de estrutura.",
+    "mouth closed throughout -- na tentativa 1 ele abriu a boca aos 7s sem ter sido pedido",
+    "keep the thigh label visible and unchanged, never fading out -- a etiqueta sumia a partir dos 3s",
+    "menos redundancia nos blocos de identidade, ja que agora ha uma referencia so"
+  ],
+  "custo_creditos": 52,
+  "saida": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvEgEPXrYpx9qCDMNk2fA4euHq/hf_20260811_003217_964e18c2-7a68-4982-96d7-4186ee8270a4.mp4",
+  "quality_gate": {
+    "status": "pendente",
+    "bloqueio": "O proxy desta sessao nega o CDN da Higgsfield. Preciso do mp4 subido no chat para rodar o checklist, como foi feito na tentativa 1.",
+    "primeiro_item_a_medir": "frame 0 do video contra o frame de partida. Na tentativa 1 deu 90.4% de pixels diferentes e correlacao 0.45."
+  },
+  "sinal_de_alerta": "O eco dos parametros deste job AINDA devolveu a imagem em reference_images, mesmo sendo uma so. Se o frame 0 divergir de novo, a conclusao e' que o seedance_2_5 nao honra start frame literal, e o caminho passa a ser um modelo cujo unico papel de midia e' start_image: kling3_0_turbo, veo3 ou happy_horse_video."
+}
