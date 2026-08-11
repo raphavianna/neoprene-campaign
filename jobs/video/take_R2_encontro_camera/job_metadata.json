@@ -1,7 +1,7 @@
 {
   "take": "R2",
   "slug": "encontro_camera",
-  "status": "gerado_aguardando_quality_gate",
+  "status": "reprovado",
   "modelo": "seedance_2_5",
   "parametros": {
     "mode": "omni_reference",
@@ -39,26 +39,29 @@
   "job_id": "b88358a2-8b09-436b-aaa0-c428157d05c6",
   "custo_real": 52,
   "quality_gate": {
-    "status": "pendente",
-    "bloqueio": "Checklist anti-AI visual nao executavel desta sessao. O proxy nega upload.higgsfield.ai e o CDN de saida (403 de politica), entao nao da para baixar o mp4 nem extrair frames.",
-    "verificado_sem_ver_o_video": {
-      "parametros_conferem_com_o_aprovado": true,
-      "resolucao": "1280x720, 16:9",
-      "duracao_s": 8,
-      "audio_gerado": true,
-      "start_image": "sf_002, com badge e etiqueta ja compostos no frame 0",
-      "referencias_identidade": "face_001 + body_002 -- identity lock cumprido",
-      "preset_declinado": "IN THE DARK"
+    "status": "reprovado",
+    "documento": "docs/auditoria_R2_job_b88358a2.md",
+    "motivo_principal": "O frame de partida foi ignorado. Frame 0 do video difere do start frame em 90.4% dos pixels, correlacao 0.45. O modo omni_reference colapsou start_image junto com as demais referencias, e o modelo redesenhou o badge e a etiqueta -- o erro de tipografia voltou.",
+    "aprovado": {
+      "formato": "1280x720, 16:9, 24.000fps, 8.04s",
+      "grao": "correlacao do padrao entre frames -0.007, muda a cada frame como filme",
+      "flicker": "desvio 0.29 sobre luminancia 142.6, praticamente nulo",
+      "motion_blur": "variancia do laplaciano oscila 95% com o movimento",
+      "maos": "cinco dedos, anatomia correta",
+      "identidade": "estavel nos 8s",
+      "pele": "poros e barba rala visiveis",
+      "peca_duas_partes": "top e bermuda distinguiveis",
+      "pes_descalcos": true,
+      "prancha": "braco direito, leash presente",
+      "agua": "sem respingo acima da canela"
     },
-    "depende_de_inspecao_visual": [
-      "checklist anti-AI de video do HIGG_SystemPrompt na integra",
-      "fidelidade do patch ao longo dos 8s: o frame 0 esta correto, falta confirmar que o modelo nao redesenhou o texto adiante",
-      "coerencia entre poliamida e neoprene em movimento",
-      "aderencia a familia de lente e luz da biblia de cinematografia",
-      "fisica da agua e das gotas",
-      "cabelo em mechas agrupadas, nao em blob",
-      "pes descalcos e prancha sob o braco direito"
-    ]
+    "reprovado_itens": {
+      "start_frame_ignorado": "90.4% dos pixels diferem",
+      "badge_peito": "monograma aproximado, arco em ruido tipografico, muda frame a frame (variacao media 5.31, pico 11.28)",
+      "etiqueta_coxa": "texto ilegivel em 1-2s e DESAPARECE a partir de 3s -- quebra de continuidade dentro do take",
+      "expressao": "boca aberta aos 7.0s nao pedida no brief"
+    },
+    "proximo_passo": "Testar omni_reference com o start frame sozinho, sem face_001 nem body_002. Hipotese: multiplas referencias colapsam os papeis. Custo 52 creditos."
   },
   "timestamp_utc": "2026-08-10T23:57:17Z",
   "saida": {
